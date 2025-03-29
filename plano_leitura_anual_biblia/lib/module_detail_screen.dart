@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
-import 'audio.dart';
+
 import 'reading_plan.dart';
 import 'main.dart';
 
@@ -19,8 +19,6 @@ class ModuleDetailScreen extends StatefulWidget {
 class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
   Map<String, String>? texts;
   double _fontSize = 16.0;
-  bool isPlaying = false;
-  final audioHelper = AudioHelper();
 
   @override
   void initState() {
@@ -66,13 +64,6 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
     setState(() {
       _fontSize -= 2;
     });
-  }
-
-  @override
-  void dispose() {
-    // Pare o áudio quando sair da tela
-    audioHelper.stop();
-    super.dispose();
   }
 
   @override
@@ -148,22 +139,12 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           ],
         ),
         child: ExpansionTile(
-          title: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  entry.key,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              IconButton(
-                icon: Icon(isPlaying ? Icons.pause : Icons.volume_up),
-                onPressed: () => _toggleAudio(entry.value),
-              ),
-            ],
+          title: Text(
+            entry.key,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           children: [
             Padding(
@@ -177,28 +158,5 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
         ),
       ),
     );
-  }
-
-  void _toggleAudio(String text) {
-    if (isPlaying) {
-      audioHelper.stop();
-      setState(() {
-        isPlaying = false;
-      });
-    } else {
-      audioHelper.speakText(text, _onAudioStart, _onAudioComplete);
-    }
-  }
-
-  void _onAudioStart() {
-    setState(() {
-      isPlaying = true;
-    });
-  }
-
-  void _onAudioComplete() {
-    setState(() {
-      isPlaying = false;
-    });
   }
 }

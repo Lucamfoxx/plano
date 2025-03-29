@@ -18,10 +18,9 @@ dependencies:
   percent_indicator: ^4.2.3
   shared_preferences: ^2.0.13
   http: ^1.2.1
-  audioplayers: ^6.0.0
   google_fonts: ^6.2.1
   font_awesome_flutter: ^10.1.0
-  flutter_tts: ^4.2.2
+
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +36,5 @@ flutter:
     - assets/imagens/
     - assets/dia/
     - assets/modulos/
-    
 
-    
+
