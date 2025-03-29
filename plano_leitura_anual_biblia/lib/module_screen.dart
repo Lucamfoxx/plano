@@ -106,7 +106,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         child: Image.asset(
           imagePath,
           fit: BoxFit.cover,
-          height: 500,
+          height: MediaQuery.of(context).size.width < 600 ? 380 : 500,
           width: double.infinity,
         ),
       ),
@@ -129,7 +129,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
             style: TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 15),
         ],
       ),
     );
