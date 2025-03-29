@@ -1,0 +1,42 @@
+name: plano_leitura_anual_biblia
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  json_annotation: ^4.8.0
+  provider: ^6.0.5
+  cupertino_icons: ^1.0.6
+  percent_indicator: ^4.2.3
+  shared_preferences: ^2.0.13
+  http: ^1.2.1
+  audioplayers: ^6.0.0
+  google_fonts: ^6.2.1
+  font_awesome_flutter: ^10.1.0
+  flutter_tts: ^4.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/texts/
+    - assets/imagens/
+    - assets/dia/
+    - assets/modulos/
+    
+
+    

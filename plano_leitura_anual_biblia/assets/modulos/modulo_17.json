@@ -1,0 +1,203 @@
+{
+    "Cartas de São Paulo": [
+        {
+        "Módulo": 16,
+        "Dia": 231,
+        "Livro": "Romanos",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 12",
+        "Versículo": "21-25"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 232,
+        "Livro": "Romanos",
+        "Capítulo": "5-8",
+        "Livro e Capítulo": "Provérbios 12",
+        "Versículo": "26-28"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 233,
+        "Livro": "Romanos",
+        "Capítulo": "9-12",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "1-5"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 234,
+        "Livro": "Romanos",
+        "Capítulo": "13-16",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "6-10"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 235,
+        "Livro": "I Coríntios",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "11-15"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 236,
+        "Livro": "I Coríntios",
+        "Capítulo": "5-8",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "16-20"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 237,
+        "Livro": "I Coríntios",
+        "Capítulo": "9-12",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "21-25"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 238,
+        "Livro": "I Coríntios",
+        "Capítulo": "13-16",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "1-5"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 239,
+        "Livro": "II Coríntios",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 13",
+        "Versículo": "6-10"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 240,
+        "Livro": "II Coríntios",
+        "Capítulo": "5-8",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "11-15"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 241,
+        "Livro": "II Coríntios",
+        "Capítulo": "9-13",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "16-20"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 242,
+        "Livro": "Gálatas",
+        "Capítulo": "1-3",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "21-25"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 243,
+        "Livro": "Gálatas",
+        "Capítulo": "4-6",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "1-5"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 244,
+        "Livro": "Efésios",
+        "Capítulo": "1-3",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "6-10"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 245,
+        "Livro": "Efésios",
+        "Capítulo": "4-6",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "11-15"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 246,
+        "Livro": "Filipenses",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 14",
+        "Versículo": "16-20"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 247,
+        "Livro": "Colossenses",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 15",
+        "Versículo": "21-25"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 248,
+        "Livro": "I Tessalonicenses",
+        "Capítulo": "1-5",
+        "Livro e Capítulo": "Provérbios 15",
+        "Versículo": "26-28"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 249,
+        "Livro": "II Tessalonicenses",
+        "Capítulo": "1-3",
+        "Livro e Capítulo": "Provérbios 15",
+        "Versículo": "1-5"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 250,
+        "Livro": "I Timóteo",
+        "Capítulo": "1-6",
+        "Livro e Capítulo": "Provérbios 15",
+        "Versículo": "6-10"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 251,
+        "Livro": "II Timóteo",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 15",
+        "Versículo": "11-15"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 252,
+        "Livro": "Tito 1-3 | Filemón ",
+        "Capítulo": " 1",
+        "Livro e Capítulo": "Provérbios 15",
+        "Versículo": "16-20"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 253,
+        "Livro": "Hebreus",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 16",
+        "Versículo": "1-5"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 254,
+        "Livro": "Hebreus",
+        "Capítulo": "5-8",
+        "Livro e Capítulo": "Provérbios 16",
+        "Versículo": "6-10"
+        },
+        {
+        "Módulo": 16,
+        "Dia": 255,
+        "Livro": "Hebreus",
+        "Capítulo": "9-13",
+        "Livro e Capítulo": "Provérbios 16",
+        "Versículo": "16-20"
+        }
+    ]}

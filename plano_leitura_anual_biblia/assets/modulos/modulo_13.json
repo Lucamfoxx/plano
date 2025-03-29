@@ -1,0 +1,59 @@
+{
+    "Retorno": [
+        {
+        "Módulo": 12,
+        "Dia": 194,
+        "Livro": "Esdras",
+        "Capítulo": "1-4",
+        "Livro e Capítulo": "Provérbios 6",
+        "Versículo": "6-11"
+        },
+        {
+        "Módulo": 12,
+        "Dia": 195,
+        "Livro": "Esdras",
+        "Capítulo": "5-8",
+        "Livro e Capítulo": "Provérbios 6",
+        "Versículo": "12-15"
+        },
+        {
+        "Módulo": 12,
+        "Dia": 196,
+        "Livro": "Esdras",
+        "Capítulo": "9-10",
+        "Livro e Capítulo": "Provérbios 6",
+        "Versículo": "16-20"
+        },
+        {
+        "Módulo": 12,
+        "Dia": 197,
+        "Livro": "Neemias",
+        "Capítulo": "1-3",
+        "Livro e Capítulo": "Provérbios 6",
+        "Versículo": "21-25"
+        },
+        {
+        "Módulo": 12,
+        "Dia": 198,
+        "Livro": "Neemias",
+        "Capítulo": "4-7",
+        "Livro e Capítulo": "Provérbios 6",
+        "Versículo": "26-30"
+        },
+        {
+        "Módulo": 12,
+        "Dia": 199,
+        "Livro": "Neemias",
+        "Capítulo": "8-10",
+        "Livro e Capítulo": "Provérbios 6",
+        "Versículo": "31-35"
+        },
+        {
+        "Módulo": 12,
+        "Dia": 200,
+        "Livro": "Neemias",
+        "Capítulo": "11-13",
+        "Livro e Capítulo": "Provérbios 7",
+        "Versículo": "1-6"
+        }
+    ]}

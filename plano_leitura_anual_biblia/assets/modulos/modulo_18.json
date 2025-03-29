@@ -1,0 +1,43 @@
+{
+    "Cartas Católicas": [
+        {
+        "Módulo": 17,
+        "Dia": 256,
+        "Livro": "São Tiago",
+        "Capítulo": "1-5",
+        "Livro e Capítulo": "Provérbios 16",
+        "Versículo": "21-25"
+        },
+        {
+        "Módulo": 17,
+        "Dia": 257,
+        "Livro": "I São Pedro",
+        "Capítulo": "1-5",
+        "Livro e Capítulo": "Provérbios 16",
+        "Versículo": "26-28"
+        },
+        {
+        "Módulo": 17,
+        "Dia": 258,
+        "Livro": "II São Pedro",
+        "Capítulo": "1-3",
+        "Livro e Capítulo": "Provérbios 16",
+        "Versículo": "31-33"
+        },
+        {
+        "Módulo": 17,
+        "Dia": 259,
+        "Livro": "I São João",
+        "Capítulo": "1-5",
+        "Livro e Capítulo": "Provérbios 17",
+        "Versículo": "1-5"
+        },
+        {
+        "Módulo": 17,
+        "Dia": 260,
+        "Livro": "II e III São João | São Judas",
+        "Capítulo": "1",
+        "Livro e Capítulo": "Provérbios 17",
+        "Versículo": "6-10"
+        }
+    ]}
