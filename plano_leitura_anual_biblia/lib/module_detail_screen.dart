@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'reading_plan.dart';
 import 'main.dart';
@@ -41,12 +42,21 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
     }
   }
 
-  void _confirmReading() {
+  Future<void> _saveLastReadState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('lastModule', widget.module.module);
+    await prefs.setInt('lastDay', widget.module.day);
+  }
+
+  Future<void> _confirmReading() async {
     setState(() {
       widget.module.isCompleted = true;
     });
     Provider.of<ReadingPlanProvider>(context, listen: false)
         .updateModuleCompletion(widget.moduleGroup, widget.module, true);
+
+    await _saveLastReadState();
+
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => ReadingPlanPage()),

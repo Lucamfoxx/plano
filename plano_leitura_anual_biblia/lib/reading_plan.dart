@@ -102,10 +102,18 @@ class ReadingPlanProvider with ChangeNotifier {
         'module_${module.module}_day_${module.day}', module.isCompleted);
   }
 
-  void updateModuleCompletion(
-      ModuleGroup moduleGroup, Module module, bool isCompleted) {
+  Future<void> updateModuleCompletion(
+      ModuleGroup moduleGroup, Module module, bool isCompleted) async {
     module.isCompleted = isCompleted;
-    _saveModuleCompletionStatus(module);
+    await _saveModuleCompletionStatus(module);
+    if (isCompleted) {
+      // Only update lastModule if all modules in the group are complete
+      bool allCompleted = moduleGroup.modules.every((m) => m.isCompleted);
+      if (allCompleted) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('lastModule', module.module + 1);
+      }
+    }
     notifyListeners();
   }
 

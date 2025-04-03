@@ -17,16 +17,25 @@ class _ModuleScreenState extends State<ModuleScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _navigateToFirstUnreadModule();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _navigateToFirstUnreadModule();
     });
   }
 
-  void _navigateToFirstUnreadModule() {
+  Future<void> _navigateToFirstUnreadModule() async {
     final firstUnreadIndex =
         widget.moduleGroup.modules.indexWhere((module) => !module.isCompleted);
     if (firstUnreadIndex != -1) {
-      _pageController.jumpToPage(firstUnreadIndex);
+      int currentPage =
+          _pageController.hasClients ? _pageController.page?.round() ?? 0 : 0;
+      while (currentPage < firstUnreadIndex) {
+        currentPage++;
+        await _pageController.animateToPage(
+          currentPage,
+          duration: Duration(milliseconds: 350),
+          curve: Curves.easeInOut,
+        );
+      }
     }
   }
 
