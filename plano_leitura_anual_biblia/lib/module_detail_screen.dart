@@ -78,6 +78,9 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double horizontalPadding = screenWidth < 400 ? 8.0 : 16.0;
+
     return Scaffold(
       backgroundColor: Colors.lightBlue[50],
       appBar: AppBar(
@@ -97,7 +100,8 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 16.0),
         child: texts == null
             ? Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
@@ -111,7 +115,8 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
       ),
       bottomNavigationBar: Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+        padding:
+            EdgeInsets.symmetric(vertical: 18.0, horizontal: horizontalPadding),
         child: SizedBox(
           width: double.infinity,
           child: ElevatedButton(
@@ -152,7 +157,7 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
           title: Text(
             entry.key,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 18,
               fontWeight: FontWeight.bold,
             ),
           ),

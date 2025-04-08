@@ -55,7 +55,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
           final imagePath = 'assets/dia/dia_${module.day}.jpg';
 
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(
+                MediaQuery.of(context).size.width < 400 ? 8.0 : 16.0),
             child: _buildModuleCard(context, module, imagePath),
           );
         },
@@ -115,7 +116,17 @@ class _ModuleScreenState extends State<ModuleScreen> {
         child: Image.asset(
           imagePath,
           fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.width < 600 ? 380 : 500,
+          height: (() {
+            double screenWidth = MediaQuery.of(context).size.width;
+            double imageHeight = screenWidth < 400
+                ? 550
+                : screenWidth < 600
+                    ? 550
+                    : screenWidth < 900
+                        ? 420
+                        : 500;
+            return imageHeight;
+          })(),
           width: double.infinity,
         ),
       ),
@@ -124,18 +135,24 @@ class _ModuleScreenState extends State<ModuleScreen> {
 
   Widget _buildModuleDetails(Module module) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding:
+          EdgeInsets.all(MediaQuery.of(context).size.width < 400 ? 8.0 : 16.0),
       child: Column(
         children: [
           Text(
             'Dia ${module.day}: ${module.book} ${module.chapter}',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width < 600 ? 20 : 24,
+              fontWeight: FontWeight.bold,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 10),
           Text(
             module.psalm,
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(
+              fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 16,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 15),
