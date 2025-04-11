@@ -1,28 +1,28 @@
 import os
 import json
 
-# Caminho da pasta onde o script está localizado
-pasta_atual = os.path.dirname(os.path.abspath(__file__))
+# Caminho da pasta onde está o script
+pasta = os.path.dirname(os.path.abspath(__file__))
 
-# Percorre todos os arquivos JSON na pasta
-for nome_arquivo in os.listdir(pasta_atual):
+for nome_arquivo in os.listdir(pasta):
     if nome_arquivo.endswith(".json"):
-        caminho_arquivo = os.path.join(pasta_atual, nome_arquivo)
-        with open(caminho_arquivo, 'r', encoding='utf-8') as f:
-            conteudo = json.load(f)
+        caminho_arquivo = os.path.join(pasta, nome_arquivo)
 
-        alterado = False
+        try:
+            with open(caminho_arquivo, 'r', encoding='utf-8') as f:
+                conteudo = json.load(f)
 
-        # Para cada valor no dicionário, remove as quebras de linha
-        for chave in conteudo:
-            valor = conteudo[chave]
-            if isinstance(valor, str) and '\n' in valor:
-                conteudo[chave] = valor.replace('\n', '')
-                alterado = True
+            # Verifica se o conteúdo é um dicionário (como no exemplo)
+            if isinstance(conteudo, dict):
+                conteudo["Santo Agostinho"] = " "
+                conteudo["Santo Tomás de Aquino"] = " "
 
-        # Se foi alterado, sobrescreve o arquivo
-        if alterado:
-            with open(caminho_arquivo, 'w', encoding='utf-8') as f:
-                json.dump(conteudo, f, ensure_ascii=False, indent=2)
+                with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+                    json.dump(conteudo, f, ensure_ascii=False, indent=2)
 
-print("✅ Todos os arquivos JSON foram atualizados e as quebras de linha foram removidas dos valores.")
+                print(f'Adicionados comentários vazios em {nome_arquivo}')
+            else:
+                print(f"Formato inesperado em {nome_arquivo}, ignorado.")
+
+        except Exception as e:
+            print(f"Erro ao processar {nome_arquivo}: {e}")
