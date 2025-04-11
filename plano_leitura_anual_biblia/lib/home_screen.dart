@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: _buildAppBar(),
       body: Consumer<ReadingPlanProvider>(
         builder: (context, provider, child) {
@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       title: Text('Plano Bíblico'),
     );
   }

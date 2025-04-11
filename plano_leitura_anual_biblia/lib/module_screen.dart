@@ -43,10 +43,10 @@ class _ModuleScreenState extends State<ModuleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue[50],
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(widget.moduleGroup.title),
       ),
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: PageView.builder(
         controller: _pageController,
         itemCount: widget.moduleGroup.modules.length,
@@ -174,7 +174,8 @@ class _ModuleScreenState extends State<ModuleScreen> {
       },
       child: Text('Ler'),
       style: ElevatedButton.styleFrom(
-        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+        foregroundColor: Colors.black,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         padding: EdgeInsets.symmetric(
           horizontal: 32,
           vertical: 16,
@@ -193,7 +194,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
       child: Chip(
         avatar: Icon(Icons.check_circle, color: Colors.white),
         label: Text('Concluído'),
-        backgroundColor: Colors.green,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         labelStyle: TextStyle(color: Colors.white),
       ),
     );

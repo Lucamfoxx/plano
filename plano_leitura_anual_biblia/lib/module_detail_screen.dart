@@ -82,9 +82,9 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
     double horizontalPadding = screenWidth < 400 ? 8.0 : 16.0;
 
     return Scaffold(
-      backgroundColor: Colors.lightBlue[50],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue[50],
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         title: Text('Dia ${widget.module.day}'),
         actions: [
           IconButton(
@@ -107,71 +107,93 @@ class _ModuleDetailScreenState extends State<ModuleDetailScreen> {
             : SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: texts!.entries.map((entry) {
-                    return _buildTextCard(entry);
-                  }).toList(),
+                  children: [
+                    ...texts!.entries.map((entry) {
+                      return _buildTextCard(entry);
+                    }).toList(),
+                    SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _confirmReading,
+                        child: Text('Confirmar Leitura'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
+                          foregroundColor:
+                              const Color.fromARGB(255, 203, 248, 253),
+                          padding: EdgeInsets.symmetric(vertical: 11.0),
+                          textStyle: TextStyle(fontSize: 20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 48),
+                  ],
                 ),
               ),
       ),
-      bottomNavigationBar: Container(
-        color: Colors.transparent,
-        padding:
-            EdgeInsets.symmetric(vertical: 18.0, horizontal: horizontalPadding),
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: _confirmReading,
-            child: Text('Confirmar Leitura'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 11.0),
-              textStyle: TextStyle(fontSize: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+    );
+  }
+
+  Widget _buildTextCard(MapEntry<String, String> entry) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16.0),
+      child: Material(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(10),
+        shadowColor: Colors.black.withOpacity(0.25),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: ExpansionTile(
+            title: Text(
+              entry.key,
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text.rich(
+                  TextSpan(
+                    children: _formatText(entry.value),
+                    style: TextStyle(fontSize: _fontSize, height: 1.5),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget _buildTextCard(MapEntry<String, String> entry) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: ExpansionTile(
-          title: Text(
-            entry.key,
-            style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width < 400 ? 16 : 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+  List<TextSpan> _formatText(String rawText) {
+    final lines = rawText.split('\n');
+    return lines.map((line) {
+      final match = RegExp(r'^(\\d+\\.)').firstMatch(line);
+      if (match != null) {
+        final verseNum = match.group(1)!;
+        final content = line.substring(verseNum.length);
+        return TextSpan(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                entry.value,
-                style: TextStyle(fontSize: _fontSize),
-              ),
+            TextSpan(
+              text: '$verseNum ',
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
+            TextSpan(text: content),
+            const TextSpan(text: '\n\n'),
           ],
-        ),
-      ),
-    );
+        );
+      }
+      return TextSpan(text: '$line\n\n');
+    }).toList();
   }
 }

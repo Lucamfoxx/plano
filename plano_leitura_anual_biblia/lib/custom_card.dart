@@ -155,7 +155,8 @@ class _CustomCardState extends State<CustomCard> {
       onPressed: widget.onTap,
       child: Text('Modulo'),
       style: ElevatedButton.styleFrom(
-        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        foregroundColor: Colors.black,
         padding: EdgeInsets.symmetric(
           horizontal: 32,
           vertical: 16,

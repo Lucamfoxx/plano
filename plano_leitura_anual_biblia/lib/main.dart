@@ -39,9 +39,26 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   final bool seen;
   const MainApp({required this.seen});
+
+  static _MainAppState of(BuildContext context) {
+    return context.findAncestorStateOfType<_MainAppState>()!;
+  }
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void changeThemeMode(ThemeMode newMode) {
+    setState(() {
+      _themeMode = newMode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +66,7 @@ class MainApp extends StatelessWidget {
       create: (context) => ReadingPlanProvider()..loadReadingPlan(),
       child: MaterialApp(
         title: 'Plano Anual de Leitura',
+        themeMode: _themeMode,
         theme: ThemeData(
           primarySwatch: Colors.indigo,
           colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -60,7 +78,45 @@ class MainApp extends StatelessWidget {
           ),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: seen ? ReadingPlanPage() : OnboardingScreen(),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.indigo,
+          colorScheme: ColorScheme.dark().copyWith(
+            secondary: Colors.teal[300],
+          ),
+          scaffoldBackgroundColor: Colors.grey[900],
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.indigo[800],
+            foregroundColor: Colors.white,
+          ),
+          textTheme: GoogleFonts.latoTextTheme(
+            ThemeData.dark().textTheme,
+          ).copyWith(
+            displayLarge: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+            bodyLarge: TextStyle(fontSize: 16, color: Colors.white70),
+          ),
+          cardColor: Colors.grey[850],
+          cardTheme: CardTheme(
+            color: Colors.grey[850],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.teal[600],
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 18.0),
+              elevation: 6,
+            ),
+          ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: widget.seen ? ReadingPlanPage() : OnboardingScreen(),
         routes: {
           '/main': (context) => ReadingPlanPage(),
           '/info': (context) => InfoPage(),
@@ -76,7 +132,7 @@ class ReadingPlanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50], // Fundo mais claro
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: CustomAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 20.0),
@@ -100,13 +156,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.indigo[600],
       title: Text(
         'Plano Anual de Leitura',
         style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
       ),
       centerTitle: true,
@@ -117,6 +175,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 12.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.white24,
+            child: IconButton(
+              icon: Icon(
+                isDark ? Icons.wb_sunny : Icons.nightlight_round,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                final newBrightness = isDark ? ThemeMode.light : ThemeMode.dark;
+                MainApp.of(context).changeThemeMode(newBrightness);
+              },
+            ),
+          ),
+        ),
         IconButton(
           icon: FaIcon(FontAwesomeIcons.infoCircle, color: Colors.white),
           onPressed: () {
@@ -137,7 +211,7 @@ class ProgressCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       child: Padding(
         padding: const EdgeInsets.all(28.0),
         child: Column(
@@ -154,7 +228,8 @@ class ProgressCard extends StatelessWidget {
                   duration: Duration(seconds: 1),
                   curve: Curves.easeOutCubic,
                   child: CustomPaint(
-                    foregroundPainter: ProgressPainter(progress: progress),
+                    foregroundPainter:
+                        ProgressPainter(progress: progress, context: context),
                     child: Container(
                       width: 260,
                       height: 260,
@@ -164,7 +239,9 @@ class ProgressCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 39,
                           fontWeight: FontWeight.bold,
-                          color: Colors.indigo[700],
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.limeAccent
+                              : Colors.indigo[700],
                         ),
                       ),
                     ),
@@ -186,8 +263,9 @@ class ProgressCard extends StatelessWidget {
 
 class ProgressPainter extends CustomPainter {
   final double progress;
+  final BuildContext context;
 
-  ProgressPainter({required this.progress});
+  ProgressPainter({required this.progress, required this.context});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -197,7 +275,9 @@ class ProgressPainter extends CustomPainter {
 
     // Círculo de fundo
     final backgroundPaint = Paint()
-      ..color = Colors.grey[200]!
+      ..color = Theme.of(context).brightness == Brightness.dark
+          ? Colors.grey[700]!
+          : const Color.fromARGB(255, 238, 238, 238)!
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth;
 
@@ -208,7 +288,9 @@ class ProgressPainter extends CustomPainter {
       ..shader = SweepGradient(
         startAngle: -1.5708, // -90 graus em radianos
         endAngle: 4.71239, // 270 graus em radianos
-        colors: [Colors.teal[400]!, Colors.indigo[700]!],
+        colors: Theme.of(context).brightness == Brightness.dark
+            ? [Colors.limeAccent.shade100, Colors.lime]
+            : [Colors.teal[400]!, Colors.indigo[700]!],
         stops: [0.0, 1.0],
       ).createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
@@ -267,7 +349,7 @@ class InfoCard extends StatelessWidget {
     return Card(
       elevation: 4,
       margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
-      color: Colors.white,
+      color: Theme.of(context).cardColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
