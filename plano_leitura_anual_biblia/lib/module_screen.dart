@@ -52,7 +52,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         itemCount: widget.moduleGroup.modules.length,
         itemBuilder: (context, index) {
           final module = widget.moduleGroup.modules[index];
-          final imagePath = 'assets/dia/dia_${module.day}.jpg';
+          final imagePath = 'assets/dia/dia_${module.day}.webp';
 
           return Padding(
             padding: EdgeInsets.all(
